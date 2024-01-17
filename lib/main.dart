@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'providers/currencyProvider.dart';
 import 'screens/homePage.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (_) => CurrencyApi(),
+    ),
+  ], child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -11,12 +17,7 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        dialogBackgroundColor: Colors.white30,
-      ),
-      home: HomePage()
-    );
+    return const MaterialApp(
+        debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
