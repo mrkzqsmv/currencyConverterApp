@@ -11,13 +11,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      items: [
+      items: const [
         BottomNavigationBarItem(
-          icon: const Icon(Icons.home),
+          icon: Icon(Icons.home),
           label: 'Home',
         ),
         BottomNavigationBarItem(
-          icon: const Icon(Icons.star),
+          icon: Icon(Icons.star),
           label: 'Starred',
         ),
       ],

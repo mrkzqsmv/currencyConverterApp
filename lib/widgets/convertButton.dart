@@ -13,7 +13,9 @@ class ConvertButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         debugPrint('Convert button pressed');
-        context.read<CurrencyProvider>().getCurrencies(fromCurrency, toCurrency);
+        context
+            .read<CurrencyProvider>()
+            .getCurrencies(fromCurrency, toCurrency);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

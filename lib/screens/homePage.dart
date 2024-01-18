@@ -14,20 +14,24 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  //created controller for amount
   final TextEditingController _amountController = TextEditingController();
 
+  //created map for from currency
   Map fromCountry = {
     'code': 'AZN',
     'name': 'Azerbaijan Manat',
     'symbol': '₼',
   };
 
+  //created map for to currency
   Map toCountry = {
     'code': 'USD',
     'name': 'United States Dollar',
     'symbol': '\$'
   };
 
+  //dispose controller
   @override
   void dispose() {
     _amountController.dispose();
@@ -132,6 +136,15 @@ class _HomePageState extends State<HomePage> {
 
   //show result of convert
   Padding showResult(BuildContext context) {
+    var result = 0.0;
+
+    try {
+      double currencyValue = context.watch<CurrencyProvider>().value;
+      double amount = double.parse(_amountController.text);
+      result = amount * currencyValue;
+    } catch (e) {
+      print(e);
+    }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -145,8 +158,8 @@ class _HomePageState extends State<HomePage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-                '${_amountController.text} ${fromCountry['symbol']} = ${context.watch<CurrencyProvider>().value * double.parse(_amountController.text)} ${toCountry['symbol']}'),
+            Text('${_amountController.text} ${fromCountry['symbol']} = '),
+            Text('$result ${toCountry['symbol']}')
           ],
         ),
       ),
