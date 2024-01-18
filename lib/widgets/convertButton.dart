@@ -1,15 +1,19 @@
 import 'package:currency_converter_app/providers/currencyProvider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ConvertButton extends StatelessWidget {
-  const ConvertButton({super.key});
+  final String fromCurrency;
+  final String toCurrency;
+  const ConvertButton(
+      {super.key, required this.fromCurrency, required this.toCurrency});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         debugPrint('Convert button pressed');
-        CurrencyApi().getCurrencies();
+        context.read<CurrencyProvider>().getCurrencies(fromCurrency, toCurrency);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
